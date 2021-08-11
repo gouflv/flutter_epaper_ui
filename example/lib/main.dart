@@ -43,6 +43,13 @@ class MyApp extends StatelessWidget {
                     SizedBox(
                       width: 15,
                     ),
+                    BorderButton(
+                      label: '中文',
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
                     BorderButton.rounded(
                       label: 'Rounded',
                       onPressed: () {},
@@ -50,15 +57,6 @@ class MyApp extends StatelessWidget {
                     SizedBox(
                       width: 15,
                     ),
-                    BorderButton.rounded(
-                      label: '中文',
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    OutlinedButton(onPressed: () {}, child: Text('中文')),
-                    OutlinedButton(onPressed: () {}, child: Text('HoO')),
                   ],
                 ),
               )

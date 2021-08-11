@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ButtonStyles {
-  ButtonStyles({this.height, this.padding, this.radius, this.textStyle});
+  ButtonStyles({this.height, this.padding, this.radius, this.fontSize});
 
   final double? height;
 
@@ -11,7 +11,9 @@ class ButtonStyles {
 
   final BorderRadius? radius;
 
-  final TextStyle? textStyle;
+  // final TextStyle? textStyle;
+
+  final double? fontSize;
 
   ButtonStyles assign(ButtonStyles? source) {
     if (source == null) return this;
@@ -20,19 +22,18 @@ class ButtonStyles {
         height: source.height ?? height,
         padding: source.padding ?? padding,
         radius: source.radius ?? radius,
-        textStyle: source.textStyle ?? textStyle);
+        fontSize: source.fontSize ?? fontSize);
   }
 
   static ButtonStyles defaultStyles() {
     double height = 40.s;
     double fontSize = 20.s;
-    double lineHeight = (height - 2) / fontSize;
 
     return ButtonStyles(
         height: height,
         padding: EdgeInsets.symmetric(horizontal: 12),
         radius: BorderRadius.circular(4),
-        textStyle: TextStyle(fontSize: fontSize, height: lineHeight));
+        fontSize: fontSize);
   }
 }
 
@@ -54,19 +55,20 @@ class StyledButton extends StatelessWidget {
     return GestureDetector(
         onTap: onPressed,
         child: Container(
-            height: _style.height,
-            padding: _style.padding,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-              ),
-              borderRadius: _style.radius,
+          height: _style.height,
+          padding: _style.padding,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black,
             ),
-            child: Center(
-              child: Text(
-                label,
-                style: _style.textStyle,
-              ),
-            )));
+            borderRadius: _style.radius,
+          ),
+          child: Center(
+            child: Text(
+              label,
+              style: TextStyle(fontSize: _style.fontSize),
+            ),
+          ),
+        ));
   }
 }
