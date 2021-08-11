@@ -1,4 +1,5 @@
 import 'package:epaper_ui/epaper_ui.dart';
+import 'package:example/widgets/panel.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,22 +28,42 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('Flutter EPaper UI Example'),
           ),
-          body: Center(
-              child: Row(
-            children: [
-              BorderButton(
-                text: 'Button',
-                onPressed: () {
-                  print(DateTime.now());
-                },
-              ),
-              OutlinedButton(
-                  onPressed: () {
-                    print('clicked2');
-                  },
-                  child: Text('Button2')),
-            ],
-          )),
+          body: PageContainer(
+            child: Column(children: [
+              Panel(
+                title: 'Button',
+                child: Row(
+                  children: [
+                    BorderButton(
+                      label: 'Default',
+                      onPressed: () {
+                        print(DateTime.now());
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    BorderButton.rounded(
+                      label: 'Rounded',
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    BorderButton.rounded(
+                      label: '中文',
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    OutlinedButton(onPressed: () {}, child: Text('中文')),
+                    OutlinedButton(onPressed: () {}, child: Text('HoO')),
+                  ],
+                ),
+              )
+            ]),
+          ),
         ));
   }
 }
