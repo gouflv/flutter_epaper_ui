@@ -1,28 +1,30 @@
+import 'package:epaper_ui/widgets/button/styled_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class BorderButton extends StatelessWidget {
-  const BorderButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
+class BorderButton extends StyledButton {
+  BorderButton(
+      {Key? key,
+      required String label,
+      required VoidCallback onPressed,
+      ButtonStyles? style})
+      : super(key: key, label: label, onPressed: onPressed, style: style);
 
-  final String text;
-  final VoidCallback onPressed;
+  BorderButton.rounded(
+      {Key? key,
+      required String label,
+      required VoidCallback onPressed,
+      ButtonStyles? style})
+      : super(
+            key: key,
+            label: label,
+            onPressed: onPressed,
+            style: roundedButtonStyle(style));
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: onPressed,
-        child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-              ),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Text(text)));
+  static ButtonStyles roundedButtonStyle(ButtonStyles? style) {
+    ButtonStyles _style = ButtonStyles(
+      radius: BorderRadius.circular(100),
+    );
+    return ButtonStyles.defaultStyles().assign(_style);
   }
 }
